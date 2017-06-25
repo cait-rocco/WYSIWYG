@@ -1,0 +1,21 @@
+header {
+	font-size: 2em;
+	font-weight: bold;
+}
+
+img {
+	display: block;
+	margin: auto;
+}
+
+.person:nth-of-type(even) {
+	background-color: lightyellow;
+}
+
+.person:nth-of-type(odd) {
+	background-color: lightblue;	
+}
+
+.add-border {
+	border: dotted purple;
+}
