@@ -1,6 +1,6 @@
 var famPeople = [
 	{
-		title: "Presidentail Candidate",
+		title: "Presidential Candidate",
 		name: "Hillary Clinton",
 		bio: "An American politician who was the 67th United States Secretary of State from 2009 to 2013, U.S. Senator from New York from 2001 to 2009, First Lady of the United States from 1993 to 2001, and the Democratic Party's nominee for President of the United States in the 2016 election.",
 		image: "https://pbs.twimg.com/profile_images/839938827837976576/leN1zJJx.jpg",
@@ -33,51 +33,32 @@ var famPeople = [
 
 for (let i = 0; i < famPeople.length; i++) {
 	document.getElementById("container").innerHTML += 
-		`<div class="person" id="person--${i}">
+		`<div class="person" id="${i}">
 			<header id="nameTitle">${famPeople[i].name} - ${famPeople[i].title}</header><br>
 			<img src = "${famPeople[i].image}"/><br>
-			<section id="imageBio" class="imageBio">${famPeople[i].bio}</section><br>
+			<section id="${i}" class="imageBio-${i}">${famPeople[i].bio}</section><br>
 			<footer id="lifespan">${famPeople[i].lifespan.birth} to ${famPeople[i].lifespan.death}</footer>
 		</div><br>`
 }
 
 let input = document.getElementById("userInput");
 let personDiv = document.getElementsByClassName("person");
+let currentCard = null;
 
 for (var i = 0; i < famPeople.length; i++) {
 	personDiv[i].addEventListener("click", function (event) {
 		event.currentTarget.classList.toggle("add-border");
 		input.focus();
-		let newImageBio = event.currentTarget.querySelector(".imageBio")
-		input.addEventListener("keyup", function(e) {
-			// event.target.innerHTML = input.value;
-			// console.log("parent or child", event.target.id);
-			return newImageBio.innerHTML = input.value
-			// event.currentTarget.classList.toggle("add-border")
-
-		});
-
+		currentCard = event.currentTarget
 	});
 };
 
-// for (var i = 0; i < famPeople.length; i++) {
-// let newImageBio = event.currentTarget.querySelector(".imageBio")
-// 		input.addEventListener("keyup", function(e) {
-// 			// event.target.innerHTML = input.value;
-// 			// console.log("parent or child", event.target.id);
-// 			return newImageBio.innerHTML = input.value
-// 			// event.currentTarget.classList.toggle("add-border")
-
-// 		});
-
-
-input.addEventListener('keydown', function() {
-		if (event.key === 'Enter') {
-			personDiv[0].focus();
-		}
-	});
-
-
+input.addEventListener("keyup", function() {
+	let newImageBio = currentCard.getElementsByClassName(`imageBio-${currentCard.id}`)
+	newImageBio[0].innerHTML = input.value
+});
+		
+		
 input.addEventListener('keyup', function() {
 		if (event.key === 'Enter') {
 			console.log("personDiv", personDiv);
